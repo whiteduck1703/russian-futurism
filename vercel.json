@@ -1,0 +1,5 @@
+{
+  "buildCommand": "cd figma_site && npm install && npm run build",
+  "outputDirectory": "figma_site/dist",
+  "installCommand": "echo skip"
+}
