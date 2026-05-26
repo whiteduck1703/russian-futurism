@@ -1,0 +1,68 @@
+@import './fonts.css';
+@import './tailwind.css';
+@import './theme.css';
+
+/* ── Hero: полноэкранные фоны, переключение по теме ─────────────── */
+.hero-bg-for-dark,
+.hero-bg-for-light {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+/* Тёмная тема (по умолчанию) */
+.hero-bg-for-dark  { display: block; }
+.hero-bg-for-light { display: none;  }
+
+/* Светлая тема */
+html.light-theme .hero-bg-for-dark  { display: none;  }
+html.light-theme .hero-bg-for-light { display: block; }
+
+/* ── Quiz: фоны, переключение по теме ───────────────────────────── */
+.quiz-bg-for-dark,
+.quiz-bg-for-light {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.quiz-bg-for-dark  { display: block; }
+.quiz-bg-for-light { display: none;  }
+
+html.light-theme .quiz-bg-for-dark  { display: none;  }
+html.light-theme .quiz-bg-for-light { display: block; }
+
+/* ── Conflicts: фоны, переключение по теме ──────────────────────── */
+.conflicts-bg-for-dark,
+.conflicts-bg-for-light {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.conflicts-bg-for-dark  { display: block; filter: saturate(1.5) contrast(1.2) brightness(1.1); }
+.conflicts-bg-for-light { display: none;  }
+
+html.light-theme .conflicts-bg-for-dark  { display: none;  }
+html.light-theme .conflicts-bg-for-light {
+  display: block;
+  filter: saturate(2.2) contrast(1.25);
+}

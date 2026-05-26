@@ -1,0 +1,211 @@
+import { useState, useEffect, useRef } from 'react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
+
+const events = [
+  {
+    year: '1909',
+    color: '#50B87A',
+    title: 'Манифест Маринетти в России',
+    text: 'Перевод итальянского «Манифеста футуризма» публикуется в русской прессе. Русские авангардисты воспримут его как демонстрацию возможности &#x2013; возможности искусства как скандала.',
+    detail: 'Маринетти опубликовал свой «Манифест футуризма» в парижском «Фигаро» в феврале 1909 года. Русский перевод появился практически немедленно. Реакция была неоднозначной: одни увидели в нём образец для подражания, другие &#x2013; угрозу. Хлебников и гилейцы позднее настаивали на принципиальном отличии русского футуризма от итальянского: там &#x2013; машина и скорость, здесь &#x2013; слово и его тайна.'
+  },
+  {
+    year: '1910',
+    color: '#E05555',
+    title: '«Садок судей I» и рождение «Гилеи»',
+    text: 'Первый кубофутуристический альманах. Костяк группы &#x2013; Бурлюк, Хлебников, Каменский &#x2013; собрался в имении Чернянка. Название «Гилея» &#x2013; от греческого названия земли скифов.',
+    detail: 'Альманах «Садок судей» был напечатан на обороте обоев &#x2013; не из экономии, а как художественный жест: материальность книги стала частью высказывания. В сборник вошли стихи Хлебникова, Каменского, Бурлюка и других. Имение Чернянка в Таврической губернии принадлежало семье Бурлюков &#x2013; именно там в 1908&#x2013;1910 годах складывалось ядро будущей «Гилеи». Название, предложенное Хлебниковым, отсылало к скифскому происхождению авангарда.'
+  },
+  {
+    year: '1912',
+    color: '#E05555',
+    title: '«Пощёчина общественному вкусу»',
+    text: 'Главный манифест русского футуризма. «Бросить Пушкина, Достоевского, Толстого и проч. с Парохода Современности». Манифест как таран &#x2013; без аргументов, только удар.',
+    detail: 'Манифест вышел в декабре 1912 года в одноимённом альманахе. Подписали четверо: Бурлюк, Крученых, Маяковский, Хлебников. Ключевые требования: право на произвольные неологизмы, «непреодолимую ненависть к существовавшему языку», право «стоять на глыбе слова "мы" среди моря свиста и негодования». Реакция прессы была именно такой, какой и хотели авторы: скандал, насмешки, цитирование. Цель была достигнута.'
+  },
+  {
+    year: '1912',
+    color: '#E8C84A',
+    title: 'Академия Эго-Поэзии',
+    text: 'Иван Игнатьев основывает «Академию Эго-Поэзии (Вселенский Футуризм)». Против коллективного «Мы» гилейцев &#x2013; абсолютное личное «Я».',
+    detail: 'Петербургский эго-футуризм развивался параллельно московскому кубофутуризму, но принципиально иначе. Если «Гилея» строила коллективный бунт («нам стоять на глыбе слова МЫ»), Игнатьев и Северянин возвышали абсолютную личность. «Академия» издавала альманахи, проводила вечера; Северянин уже в 1912 году собирал полные залы.'
+  },
+  {
+    year: '1913',
+    color: '#E05555',
+    title: 'Турне и «Победа над Солнцем»',
+    text: 'Гастроли по 17 городам России: Харьков, Одесса, Симферополь. Скандал как реклама, провокация как стратегия. Премьера оперы с декорациями Малевича.',
+    detail: 'Турне Бурлюка, Маяковского и Каменского по 17 городам в конце 1913 &#x2013; начале 1914 года было тщательно спланированной провокацией. Жёлтые кофты, нарисованные на лицах иероглифы, деревянные ложки в петлицах &#x2013; всё это работало как реклама задолго до соответствующих маркетинговых теорий. Декабрьская премьера оперы «Победа над Солнцем» (либретто Крученых, музыка Матюшина) с декорациями Малевича стала первым опытом тотального авангардного спектакля.'
+  },
+  {
+    year: '1913',
+    color: '#50B87A',
+    title: 'Рождение «Центрифуги»',
+    text: 'Московское издательство становится третьей силой футуризма. Бобров, Пастернак, Асеев &#x2013; «третий путь»: не бунт, не эстетизм, но исследование.',
+    detail: 'Издательство «Центрифуга» основал Сергей Бобров в 1913 году. Первоначально оно выпускало книги молодых поэтов без определённой программы, но постепенно сформировало собственную эстетику: «внутреннее склонение слова», синтез традиции и эксперимента. Пастернак публиковался здесь с самого начала; «Центрифуга» стала для него основной литературной площадкой вплоть до 1917 года.'
+  },
+  {
+    year: '1914',
+    color: '#E8C84A',
+    title: 'Визит Маринетти и разрывы',
+    text: 'Маринетти называет русских «псевдофутуристами». Северянин выходит из «Академии». Самоубийство Ивана Игнатьева в 21 год.',
+    detail: 'Визит Маринетти в Россию в январе &#x2013; феврале 1914 года обнажил противоречия внутри движения. Гилейцы бойкотировали его выступления, демонстративно расклеивая листовки «долой Маринетти». Северянин, напротив, принял итальянца &#x2013; и именно в этот момент окончательно разошёлся с Игнатьевым. В январе 1914 года Игнатьев перерезал себе горло бритвой в ночь свадьбы. Ему было 21.'
+  },
+  {
+    year: '1915',
+    color: '#E05555',
+    title: '«Облако в штанах»',
+    text: 'Тетраптих Маяковского &#x2013; вершина поэтического кубофутуризма. Четыре «долой»: вашу любовь, ваше искусство, ваш строй, вашу религию.',
+    detail: '«Облако в штанах» &#x2013; поэма в четырёх частях, каждая из которых начинается с «долой». Маяковский называл её «катехизисом сегодняшнего искусства». Написана в 1914&#x2013;1915 годах, прошла цензуру в изуродованном виде (часть строф пришлось изъять). Это самая личная и одновременно самая ораторская вещь Маяковского &#x2013; редкое для него сочетание. Именно здесь конфликт между трибуном и лириком выражен с наибольшей силой.'
+  },
+  {
+    year: '1917',
+    color: '#50B87A',
+    title: 'Революция и трансформация',
+    text: 'Маяковский уходит в советскую агитацию. Пастернак продолжает лирику. Три группы распадаются &#x2013; их наследие остаётся.',
+    detail: 'Революция 1917 года по-разному отозвалась в судьбах участников авангарда. Маяковский принял её восторженно и немедленно включился в агитацию. Пастернак писал «Сестру мою &#x2013; жизнь» &#x2013; книгу, где революция присутствует как атмосфера, а не как тема. Хлебников странствовал по фронтам Гражданской войны. «Центрифуга» как организация прекратила существование; «Гилея» распалась ещё раньше. Но поэты продолжали работать.'
+  },
+  {
+    year: '1922',
+    color: 'var(--c-text-muted)',
+    title: 'Конец эпохи',
+    text: '«Зангези» Хлебникова &#x2013; последний великий текст движения. Хлебников умирает. Футуризм растворяется в ЛЕФе и советской культуре.',
+    detail: '1922 год &#x2013; рубеж. В мае умер Хлебников, так и не дождавшийся широкого признания. Посмертно вышел «Зангези» &#x2013; «сверхповесть» в 20 плоскостях, итоговый текст всего его проекта. В том же году Маяковский основал ЛЕФ &#x2013; попытку институализировать авангард в советских условиях. Но что-то уже ушло: движение превратилось в организацию, бунт &#x2013; в программу. Эпоха кончилась.'
+  }
+];
+
+export function Timeline() {
+  const [expandedEvent, setExpandedEvent] = useState<number | null>(null);
+  const [visibleEvents, setVisibleEvents] = useState<Set<number>>(new Set());
+  const eventRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const lastNudgeTime = useRef<number>(0);
+
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+
+    eventRefs.current.forEach((ref, index) => {
+      if (!ref) return;
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              setVisibleEvents(prev => {
+                if (prev.has(index)) return prev;
+                const next = new Set(prev);
+                next.add(index);
+                return next;
+              });
+              // Nudge to partially reveal next block
+              if (index < events.length - 1) {
+                setTimeout(() => {
+                  const now = Date.now();
+                  if (now - lastNudgeTime.current < 800) return;
+                  const nextRef = eventRefs.current[index + 1];
+                  if (nextRef) {
+                    const rect = nextRef.getBoundingClientRect();
+                    if (rect.top > window.innerHeight * 0.72) {
+                      lastNudgeTime.current = now;
+                      window.scrollBy({ top: 160, behavior: 'smooth' });
+                    }
+                  }
+                }, 1500);
+              }
+              observer.disconnect();
+            }
+          });
+        },
+        { threshold: 0.45 }
+      );
+      observer.observe(ref);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach(obs => obs.disconnect());
+  }, []);
+
+  return (
+    <section id="timeline" className="py-24 md:py-32 px-6 relative overflow-hidden">
+      <div className="max-w-5xl mx-auto">
+        <div className="mb-20 text-center">
+          <div className="text-[11px] tracking-[0.2em] uppercase mb-4" style={{ fontFamily: 'var(--font-body)', color: '#6C76F0' }}>
+            ХРОНОЛОГИЯ
+          </div>
+          <h2 className="text-[52px] mb-4" style={{ fontFamily: 'var(--font-display)', fontWeight: 700 }}>
+            О движении
+          </h2>
+          <p className="text-[18px]" style={{ fontFamily: 'var(--font-body)', color: 'var(--c-text-muted)' }}>
+            Ключевые события 1909&#x2013;1930&nbsp;гг.
+          </p>
+        </div>
+
+        <div className="relative">
+          <div
+            className="absolute left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 hidden md:block"
+            style={{ backgroundColor: 'var(--c-border)' }}
+          />
+
+          <div className="space-y-12">
+            {events.map((event, index) => (
+              <div
+                key={index}
+                ref={el => { eventRefs.current[index] = el; }}
+                className={`relative flex flex-col md:flex-row items-start md:items-center gap-8 ${
+                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                }`}
+                style={{
+                  opacity: visibleEvents.has(index) ? 1 : 0,
+                  transform: visibleEvents.has(index) ? 'translateY(0)' : 'translateY(36px)',
+                  transition: 'opacity 0.65s ease, transform 0.65s ease'
+                }}
+              >
+                <div className={`flex-1 ${index % 2 === 0 ? 'md:text-right md:pr-8' : 'md:text-left md:pl-8'}`}>
+                  <div
+                    className="p-6 rounded-lg cursor-pointer transition-all"
+                    style={{
+                      backgroundColor: 'var(--c-surface)',
+                      boxShadow: expandedEvent === index ? `0 0 0 1px ${event.color}40` : 'none'
+                    }}
+                    onClick={() => setExpandedEvent(expandedEvent === index ? null : index)}
+                  >
+                    <h3 className="text-[19px] mb-2" style={{ fontFamily: 'var(--font-display)', fontWeight: 700 }}>
+                      {event.title}
+                    </h3>
+                    <p className="text-[15px] leading-[1.7] mb-3" style={{ fontFamily: 'var(--font-body)', color: 'var(--c-text-muted)' }}
+                      dangerouslySetInnerHTML={{ __html: event.text }}
+                    />
+                    <div
+                      className={`flex items-center gap-1 text-[12px] ${index % 2 === 0 ? 'md:justify-end' : ''}`}
+                      style={{ fontFamily: 'var(--font-body)', color: event.color }}
+                    >
+                      {expandedEvent === index ? (
+                        <ChevronUp size={14} />
+                      ) : (
+                        <ChevronDown size={14} />
+                      )}
+                    </div>
+                    {expandedEvent === index && (
+                      <div
+                        className="mt-4 pt-4 text-[14px] leading-[1.8]"
+                        style={{ fontFamily: 'var(--font-body)', color: 'var(--c-text)', borderTop: `1px solid ${event.color}30` }}
+                        dangerouslySetInnerHTML={{ __html: event.detail }}
+                      />
+                    )}
+                  </div>
+                </div>
+
+                <div
+                  className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-14 h-14 rounded-full items-center justify-center text-[13px] font-bold z-10"
+                  style={{ backgroundColor: event.color, color: 'var(--c-bg)', fontFamily: 'var(--font-body)' }}
+                >
+                  {event.year}
+                </div>
+
+                <div className="flex-1 hidden md:block" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
