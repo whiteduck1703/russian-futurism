@@ -286,28 +286,27 @@ export function Gallery() {
       {/* Modal */}
       {selectedPainting && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-6"
+          className="fixed inset-0 z-50 flex items-start md:items-center justify-center p-4 md:p-6 overflow-y-auto"
           style={{ backgroundColor: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)' }}
           onClick={() => setSelected(null)}
         >
           <div
-            className="relative max-w-4xl w-full rounded-xl overflow-hidden grid grid-cols-1 md:grid-cols-2"
-            style={{ backgroundColor: 'var(--c-surface)', border: '2px solid ' + selectedPainting.color, maxHeight: '90vh' }}
+            className="relative max-w-4xl w-full rounded-xl overflow-hidden grid grid-cols-1 md:grid-cols-2 my-auto"
+            style={{ backgroundColor: 'var(--c-surface)', border: '2px solid ' + selectedPainting.color }}
             onClick={e => e.stopPropagation()}
           >
-            {/* Image panel */}
-            <div className="relative overflow-hidden" style={{ minHeight: '320px', background: 'linear-gradient(135deg, ' + selectedPainting.color + '18, var(--c-surface-alt))' }}>
+            {/* Image panel — limited height on mobile */}
+            <div className="relative overflow-hidden" style={{ height: 'min(45vw, 240px)', minHeight: '180px', background: 'linear-gradient(135deg, ' + selectedPainting.color + '18, var(--c-surface-alt))' }}>
               <img
                 src={selectedPainting.img}
                 alt={selectedPainting.title}
                 className="w-full h-full object-contain"
-                style={{ maxHeight: '90vh' }}
                 onError={e => { e.currentTarget.style.opacity = '0'; }}
               />
             </div>
 
-            {/* Info panel */}
-            <div className="p-8 flex flex-col justify-between overflow-y-auto">
+            {/* Info panel — always scrollable */}
+            <div className="p-6 md:p-8 flex flex-col justify-between overflow-y-auto" style={{ maxHeight: '60vh', minHeight: 0 }}>
               <div>
                 <div className="inline-block px-3 py-1 rounded-full text-[11px] mb-4"
                   style={{ fontFamily: 'var(--font-body)', fontWeight: 700, backgroundColor: selectedPainting.color, color: '#0D0D24' }}>
