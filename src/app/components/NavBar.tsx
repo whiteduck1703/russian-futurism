@@ -22,7 +22,6 @@ export function NavBar() {
   const [expanded, setExpanded] = useState(false);
   const [isDark, setIsDark] = useState(true);
 
-  // Restore saved theme on mount
   useEffect(() => {
     const saved = localStorage.getItem('futurism-theme');
     if (saved === 'light') {
@@ -42,15 +41,10 @@ export function NavBar() {
     const onScroll = () => {
       const scrollY = window.scrollY;
       setVisible(scrollY > 80);
-
-      // Find active section
       let found: string | null = null;
       for (const s of sections) {
         const el = document.getElementById(s.id);
-        if (el) {
-          const top = el.getBoundingClientRect().top;
-          if (top <= 120) found = s.id;
-        }
+        if (el && el.getBoundingClientRect().top <= 120) found = s.id;
       }
       setActive(found);
     };
@@ -68,16 +62,16 @@ export function NavBar() {
 
   if (!visible) return null;
 
+
   return (
     <>
       <style>{`
         @keyframes navSlideDown { from { opacity:0; transform:translateY(-100%); } to { opacity:1; transform:translateY(0); } }
         .nav-bar { animation: navSlideDown 0.3s cubic-bezier(0.22,1,0.36,1) both; }
-        .theme-toggle { position:relative; width:36px; height:20px; border-radius:10px; border:none; cursor:pointer; transition:background 0.3s; flex-shrink:0; }
-        .theme-toggle-knob { position:absolute; top:3px; width:14px; height:14px; border-radius:50%; background:#fff; transition:transform 0.3s, background 0.3s; }
+        .theme-icon-btn { background:none; border:none; cursor:pointer; font-size:18px; line-height:1; padding:2px; opacity:0.85; transition:opacity 0.2s, transform 0.3s; display:flex; align-items:center; }
+        .theme-icon-btn:hover { opacity:1; transform:scale(1.15); }
       `}</style>
 
-      {/* Main bar */}
       <nav
         className="nav-bar fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 h-12"
         style={{
@@ -86,7 +80,7 @@ export function NavBar() {
           borderBottom: '2px solid var(--c-border)',
         }}
       >
-        {/* Logo dot -- back to top */}
+        {/* Logo */}
         <button
           onClick={scrollTop}
           className="flex items-center gap-2 transition-opacity hover:opacity-70"
@@ -117,7 +111,7 @@ export function NavBar() {
           ))}
         </div>
 
-        {/* Right side: section label + theme toggle */}
+        {/* Right: section label + theme icon */}
         <div className="hidden md:flex items-center gap-3">
           <div
             className="text-[11px] tracking-[0.15em] uppercase"
@@ -125,44 +119,16 @@ export function NavBar() {
           >
             {active ? sections.find(s => s.id === active)?.label : ''}
           </div>
-
-          {/* Theme toggle: sun [knob] moon */}
-          <span style={{ fontSize: '12px', userSelect: 'none', opacity: isDark ? 0.4 : 1, transition: 'opacity 0.3s' }}>&#9728;&#65039;</span>
-          <button
-            className="theme-toggle"
-            onClick={toggleTheme}
-            title={isDark ? 'Светлая тема' : 'Тёмная тема'}
-            style={{ backgroundColor: isDark ? '#6C76F0' : '#B8BCE8' }}
-          >
-            <span
-              className="theme-toggle-knob"
-              style={{
-                transform: isDark ? 'translateX(19px)' : 'translateX(3px)',
-                background: isDark ? '#EEF0FF' : '#4A56D0',
-              }}
-            />
+          <button className="theme-icon-btn" onClick={toggleTheme} title={isDark ? 'Светлая тема' : 'Тёмная тема'}>
+            {isDark ? '☀️' : '🌙'}
           </button>
-          <span style={{ fontSize: '12px', userSelect: 'none', opacity: isDark ? 1 : 0.4, transition: 'opacity 0.3s' }}>&#127769;</span>
         </div>
 
-        {/* Mobile: theme toggle + menu button */}
+        {/* Mobile: theme icon + menu */}
         <div className="md:hidden flex items-center gap-3">
-          <span style={{ fontSize: '12px', userSelect: 'none', opacity: isDark ? 0.4 : 1, transition: 'opacity 0.3s' }}>&#9728;&#65039;</span>
-          <button
-            className="theme-toggle"
-            onClick={toggleTheme}
-            title={isDark ? 'Светлая тема' : 'Тёмная тема'}
-            style={{ backgroundColor: isDark ? '#6C76F0' : '#B8BCE8' }}
-          >
-            <span
-              className="theme-toggle-knob"
-              style={{
-                transform: isDark ? 'translateX(19px)' : 'translateX(3px)',
-                background: isDark ? '#EEF0FF' : '#4A56D0',
-              }}
-            />
+          <button className="theme-icon-btn" onClick={toggleTheme} title={isDark ? 'Светлая тема' : 'Тёмная тема'}>
+            {isDark ? '☀️' : '🌙'}
           </button>
-          <span style={{ fontSize: '12px', userSelect: 'none', opacity: isDark ? 1 : 0.4, transition: 'opacity 0.3s' }}>&#127769;</span>
           <button
             onClick={() => setExpanded(e => !e)}
             style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#6C76F0', fontSize: '18px' }}
@@ -198,7 +164,7 @@ export function NavBar() {
         </div>
       )}
 
-      {/* Back to top button */}
+      {/* Back to top */}
       <button
         onClick={scrollTop}
         className="fixed bottom-6 right-6 z-50 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
