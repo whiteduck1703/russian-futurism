@@ -107,7 +107,7 @@ export function PublicationsTimeline() {
                   dangerouslySetInnerHTML={{ __html: pub.group }}
                 />
 
-                {/* Note — shown when active */}
+                {/* Note – shown when active */}
                 {active === i && (
                   <p
                     className="text-[13px] leading-[1.65]"
