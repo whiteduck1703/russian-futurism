@@ -136,7 +136,7 @@ export function NavBar() {
             <span
               className="theme-toggle-knob"
               style={{
-                transform: isDark ? 'translateX(3px)' : 'translateX(19px)',
+                transform: isDark ? 'translateX(19px)' : 'translateX(3px)',
                 background: isDark ? '#EEF0FF' : '#4A56D0',
               }}
             />
@@ -155,7 +155,7 @@ export function NavBar() {
             <span
               className="theme-toggle-knob"
               style={{
-                transform: isDark ? 'translateX(3px)' : 'translateX(19px)',
+                transform: isDark ? 'translateX(19px)' : 'translateX(3px)',
                 background: isDark ? '#EEF0FF' : '#4A56D0',
               }}
             />
