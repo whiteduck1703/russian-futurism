@@ -126,7 +126,8 @@ export function NavBar() {
             {active ? sections.find(s => s.id === active)?.label : ''}
           </div>
 
-          {/* Theme toggle */}
+          {/* Theme toggle: ☀️ [knob] 🌙 */}
+          <span style={{ fontSize: '12px', userSelect: 'none', opacity: isDark ? 0.4 : 1, transition: 'opacity 0.3s' }}>☀️</span>
           <button
             className="theme-toggle"
             onClick={toggleTheme}
@@ -141,11 +142,12 @@ export function NavBar() {
               }}
             />
           </button>
-          <span style={{ fontSize: '14px', userSelect: 'none' }}>{isDark ? '🌙' : '☀️'}</span>
+          <span style={{ fontSize: '12px', userSelect: 'none', opacity: isDark ? 1 : 0.4, transition: 'opacity 0.3s' }}>🌙</span>
         </div>
 
         {/* Mobile: theme toggle + menu button */}
         <div className="md:hidden flex items-center gap-3">
+          <span style={{ fontSize: '12px', userSelect: 'none', opacity: isDark ? 0.4 : 1, transition: 'opacity 0.3s' }}>☀️</span>
           <button
             className="theme-toggle"
             onClick={toggleTheme}
@@ -160,6 +162,7 @@ export function NavBar() {
               }}
             />
           </button>
+          <span style={{ fontSize: '12px', userSelect: 'none', opacity: isDark ? 1 : 0.4, transition: 'opacity 0.3s' }}>🌙</span>
           <button
             onClick={() => setExpanded(e => !e)}
             style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#6C76F0', fontSize: '18px' }}
@@ -197,20 +200,4 @@ export function NavBar() {
 
       {/* Back to top button */}
       <button
-        onClick={scrollTop}
-        className="fixed bottom-6 right-6 z-50 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
-        style={{
-          backgroundColor: '#6C76F0',
-          color: '#EEF0FF',
-          border: 'none',
-          cursor: 'pointer',
-          fontSize: '16px',
-          boxShadow: '0 4px 16px #6C76F040',
-        }}
-        title="Наверх"
-      >
-        ↑
-      </button>
-    </>
-  );
-}
+        onClic
