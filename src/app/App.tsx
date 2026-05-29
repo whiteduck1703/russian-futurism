@@ -16,6 +16,7 @@ import { PublicationsTimeline } from './components/PublicationsTimeline';
 import { PoemAnalysis } from './components/PoemAnalysis';
 import { Texts } from './components/Texts';
 import { Gallery } from './components/Gallery';
+import { Analytics } from '@vercel/analytics/react';
 
 
 function SectionDivider() {
@@ -59,6 +60,7 @@ export default function App() {
       <SectionDivider />
       <Texts />
       <Footer />
+      <Analytics />
     </div>
   );
 }
