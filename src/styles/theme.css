@@ -29,7 +29,7 @@ html.light-theme {
 :root {
   --font-size: 16px;
 
-  /* Русский футуризм — цветовая палитра (legacy) */
+  /* Русский футуризм – цветовая палитра (legacy) */
   --bg-dark: #0D0D24;
   --surface: #141433;
   --text-offwhite: #EEF0FF;
@@ -44,11 +44,11 @@ html.light-theme {
   --font-body: 'Spectral', serif;
   --font-quote: 'Cormorant Garamond', serif;
 
-  --background: #0D1C12;
+  --background: #0D0D24;
   --foreground: #F0EAD6;
-  --card: #152219;
+  --card: #141433;
   --card-foreground: #F0EAD6;
-  --popover: #152219;
+  --popover: #141433;
   --popover-foreground: #F0EAD6;
   --primary: #D4A843;
   --primary-foreground: #0D1C12;
