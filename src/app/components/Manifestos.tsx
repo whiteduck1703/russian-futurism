@@ -208,7 +208,7 @@ export function Manifestos() {
           {/* Reading view (right panel) */}
           <div className="lg:col-span-2 rounded-lg overflow-hidden" style={{ backgroundColor: 'var(--c-bg)' }}>
             {/* Toolbar */}
-            <div className="flex items-center justify-between px-8 py-4" style={{ borderBottom: '2px solid #1E1E52' }}>
+            <div className="flex items-center justify-between px-8 py-4" style={{ borderBottom: '2px solid var(--c-border)' }}>
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => setFontSize(Math.max(13, fontSize - 2))}
@@ -241,11 +241,11 @@ export function Manifestos() {
 
             <div className={`grid ${showCommentary ? 'grid-cols-1 lg:grid-cols-2' : 'grid-cols-1'} gap-0`}>
               {/* Manifesto text */}
-              <div className="p-8" style={{ borderRight: showCommentary ? '2px solid #1E1E52' : 'none' }}>
+              <div className="p-8" style={{ borderRight: showCommentary ? '2px solid var(--c-border)' : 'none' }}>
                 <h3 className="text-[28px] mb-2" style={{ fontFamily: 'var(--font-display)', fontWeight: 700 }}>
                   {manifestos[activeManifesto].title}
                 </h3>
-                <div className="text-[13px] mb-8 pb-4" style={{ fontFamily: 'var(--font-body)', color: 'var(--c-text-muted)', borderBottom: '2px solid #1E1E52' }}>
+                <div className="text-[13px] mb-8 pb-4" style={{ fontFamily: 'var(--font-body)', color: 'var(--c-text-muted)', borderBottom: '2px solid var(--c-border)' }}>
                   {manifestos[activeManifesto].meta}
                 </div>
                 <div
@@ -264,7 +264,7 @@ export function Manifestos() {
 
               {/* Commentary */}
               {showCommentary && (
-                <div className="p-8" style={{ backgroundColor: '#080820' }}>
+                <div className="p-8" style={{ backgroundColor: 'var(--c-surface-alt)' }}>
                   <div className="text-[11px] tracking-[0.15em] uppercase mb-4" style={{ fontFamily: 'var(--font-body)', color: manifestos[activeManifesto].color }}>
                     Комментарий
                   </div>
