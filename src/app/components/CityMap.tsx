@@ -103,8 +103,8 @@ export function CityMap() {
           <div className="relative">
             <svg viewBox="-4 -3 118 90" className="w-full">
 
-              {/* Граница — реальный векторный контур (Natural Earth 110m) */}
-              {/* Непрозрачная подложка — перекрывает фоновое изображение */}
+              {/* Граница – реальный векторный контур (Natural Earth 110m) */}
+              {/* Непрозрачная подложка – перекрывает фоновое изображение */}
               <path
                 d="M 37.83,61.53 L 29.56,53.58 L 14.62,52.74 L 20.62,46.34 L 18.94,37.33 L 7.13,35.89 L 12.09,33.75 L 13.06,27.51 L 20.9,28.59 L 18.49,22.53 L 36.33,20.17 L 12.26,18.22 L 12.92,11.29 L 24.85,5.9 L 19.13,-0.81 L 73.21,-0.69 L 64.95,3.4 L 48.89,1.63 L 60.72,9.44 L 61.22,5.81 L 68.69,7.56 L 76.41,2.07 L 82.14,3.21 L 81.74,-0.81 L 110.09,-0.81 L 110.09,44.08 L 93.26,47.04 L 89.91,52.82 L 98.05,58.42 L 90.58,63.45 L 102.04,75.67 L 97.37,81.1 L 94.83,77.56 L 86.8,79.55 L 59.67,61.66 L 67.23,56.0 L 54.38,58.78 L 58.62,62.03 L 51.05,64.14 L 44.23,57.56 L 37.83,61.53 Z"
                 fill="var(--c-bg)"
@@ -132,7 +132,7 @@ export function CityMap() {
                     <circle cx={city.cx} cy={city.cy} r="5.5" fill={city.color} opacity="0.12" />
                   )}
 
-                  {/* Фоновый кружок — маскирует пунктир под точкой */}
+                  {/* Фоновый кружок – маскирует пунктир под точкой */}
                   <circle cx={city.cx} cy={city.cy} r="3.8" fill="var(--c-bg)" />
 
                   <circle
@@ -263,14 +263,14 @@ export function CityMap() {
                         className="flex gap-2 text-[13px] leading-[1.6]"
                         style={{ fontFamily: 'var(--font-body)', color: 'var(--c-text)' }}
                       >
-                        <span style={{ color: cities[active].color, flexShrink: 0 }}>&#x2014;</span>
+                        <span style={{ color: cities[active].color, flexShrink: 0 }}>&#x2013;</span>
                         <span dangerouslySetInnerHTML={{ __html: fact }} />
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                {/* Фото справа — крупное */}
+                {/* Фото справа – крупное */}
                 <div style={{ flex: '0 0 52%', overflow: 'hidden' }}>
                   <img
                     src={`/images/cities/${cities[active].photo}`}
