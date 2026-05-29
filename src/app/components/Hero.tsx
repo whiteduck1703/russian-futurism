@@ -26,7 +26,7 @@ export function Hero() {
         className="hero-bg-for-light"
       />
 
-      {/* Спейсер — пропорциональный: контент всегда ниже линии фона */}
+      {/* Спейсер – пропорциональный: контент всегда ниже линии фона */}
       <div style={{ flex: '0 0 44vh' }} />
 
       <div className="relative z-10 w-full max-w-4xl mx-auto text-center px-6 pb-16">
