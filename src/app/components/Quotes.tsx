@@ -4,13 +4,13 @@ import { Quote } from 'lucide-react';
 const quotes = [
   {
     text: 'Бросить Пушкина, Достоевского, Толстого и проч. с Парохода Современности.',
-    author: 'Д. Бурлюк, А. Крученых, В. Маяковский, В. Хлебников',
+    author: 'Д. Д. Бурлюк, А. А. Крученых, В. В. Маяковский, В. В. Хлебников',
     source: '«Пощёчина общественному вкусу», 1912',
     color: '#E05555'
   },
   {
     text: 'Мы, исповедуя Эгоизм, непреложной истиной считаем &#x2013; интуицию и эгоизм.',
-    author: 'Иван Игнатьев',
+    author: 'Иван И. Игнатьев',
     source: '«Скрижали Эго-Футуризма», 1912',
     color: '#E8C84A'
   },
@@ -21,19 +21,19 @@ const quotes = [
     color: '#50B87A'
   },
   {
-    text: 'Маринетти назвал нас псевдофутуристами. Это оскорбление обернулось точным диагнозом &#x2013; русский футуризм действительно был обращён к мифу и архаике.',
-    author: 'Бенедикт Лившиц',
+    text: 'Ф. Маринетти назвал нас псевдофутуристами. Это оскорбление обернулось точным диагнозом &#x2013; русский футуризм действительно был обращён к мифу и архаике.',
+    author: 'Бенедикт Б. Лившиц',
     source: '«Полутораглазый стрелец»',
     color: 'var(--c-text-muted)'
   },
   {
-    text: 'Для Крученых слово &#x2013; материал, который можно расплавить. Для Хлебникова &#x2013; тайна. Для Маяковского &#x2013; взрывчатое вещество, сохраняющее форму, чтобы взрыв был сильнее.',
+    text: 'Для А. Крученых слово &#x2013; материал, который можно расплавить. Для Хлебникова &#x2013; тайна. Для Маяковского &#x2013; взрывчатое вещество, сохраняющее форму, чтобы взрыв был сильнее.',
     author: 'из исследовательской литературы',
     source: '',
     color: '#E05555'
   },
   {
-    text: '«Поэма конца» &#x2013; чистый жест без слов. Гнедов выходил на сцену, делал жест рукой &#x2013; и уходил. Тишина и жест были текстом.',
+    text: '«Поэма конца» &#x2013; чистый жест без слов. В. Гнедов выходил на сцену, делал жест рукой &#x2013; и уходил. Тишина и жест были текстом.',
     author: 'о Василиске Гнедове, 1913',
     source: '',
     color: '#E8C84A'
@@ -112,7 +112,7 @@ function QuoteCard({ quote, index }: { quote: typeof quotes[0]; index: number })
 export function Quotes() {
   return (
     <section id="quotes" className="py-24 md:py-32 px-6 relative overflow-hidden">
-      {/* Mesh gradient background — тёмная тема */}
+      {/* Mesh gradient background – тёмная тема */}
       <div className="absolute inset-0 pointer-events-none quotes-mesh-dark" style={{ zIndex: 0 }}>
         <div style={{
           position: 'absolute', inset: 0,
@@ -120,7 +120,7 @@ export function Quotes() {
           animation: 'meshShift 18s ease-in-out infinite alternate'
         }}/>
       </div>
-      {/* Mesh gradient background — светлая тема */}
+      {/* Mesh gradient background – светлая тема */}
       <div className="absolute inset-0 pointer-events-none quotes-mesh-light" style={{ zIndex: 0 }}>
         <div style={{
           position: 'absolute', inset: 0,
