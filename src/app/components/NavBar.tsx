@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 const sections = [
   { id: 'timeline',     label: 'О движении' },
@@ -21,7 +21,6 @@ export function NavBar() {
   const [visible, setVisible] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [isDark, setIsDark] = useState(true);
-  const navRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const saved = localStorage.getItem('futurism-theme');
@@ -69,43 +68,44 @@ export function NavBar() {
         .nav-bar { animation: navSlideDown 0.3s cubic-bezier(0.22,1,0.36,1) both; }
         .nav-link {
           background: none; border: none; cursor: pointer;
-          font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
-          padding: 4px 8px; border-radius: 4px;
+          font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase;
+          padding: 3px 6px; border-radius: 3px;
           transition: color 0.2s, background 0.2s;
-          white-space: nowrap;
+          white-space: nowrap; flex-shrink: 0;
           color: var(--c-text-muted);
           font-family: var(--font-body);
+          line-height: 1;
         }
         .nav-link:hover { color: var(--c-text); background: rgba(108,118,240,0.1); }
-        .nav-link.nav-active { color: #6C76F0; }
-        .theme-icon-btn { background:none; border:none; cursor:pointer; font-size:16px; line-height:1; padding:4px; opacity:0.8; transition:opacity 0.2s, transform 0.2s; display:flex; align-items:center; border-radius:4px; }
+        .nav-link.nav-active { color: #6C76F0; font-weight: 600; }
+        .nav-links-wrap { display: flex; align-items: center; flex: 1; justify-content: center; overflow: hidden; min-width: 0; }
+        .theme-icon-btn { background:none; border:none; cursor:pointer; font-size:16px; line-height:1; padding:4px; opacity:0.8; transition:opacity 0.2s, transform 0.2s; display:flex; align-items:center; border-radius:4px; flex-shrink:0; }
         .theme-icon-btn:hover { opacity:1; transform:scale(1.2); }
         .mobile-menu-btn { background:none; border:none; cursor:pointer; color:#6C76F0; font-size:18px; padding:4px; }
-        .mobile-dropdown button { transition: background 0.15s; }
-        .mobile-dropdown button:hover { background: rgba(108,118,240,0.1) !important; }
+        .mobile-dropdown button:hover { background: rgba(108,118,240,0.08) !important; }
       `}</style>
 
-      {/* Main navbar */}
       <nav
-        className="nav-bar fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-5 h-11"
+        className="nav-bar fixed top-0 left-0 right-0 z-50 flex items-center px-4 h-11"
         style={{
           backgroundColor: 'var(--c-nav-bg)',
           backdropFilter: 'blur(14px)',
           borderBottom: '1px solid var(--c-border)',
+          gap: '8px',
         }}
       >
-        {/* Logo */}
+        {/* Logo dot only */}
         <button
           onClick={scrollTop}
-          className="flex items-center gap-2 hover:opacity-70 transition-opacity"
-          style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: '12px', color: '#6C76F0', background: 'none', border: 'none', cursor: 'pointer', flexShrink: 0 }}
+          title="Наверх"
+          className="hover:opacity-70 transition-opacity"
+          style={{ background: 'none', border: 'none', cursor: 'pointer', flexShrink: 0, display: 'flex', alignItems: 'center', padding: '4px' }}
         >
-          <span style={{ width: 5, height: 5, borderRadius: '50%', backgroundColor: '#6C76F0', display: 'inline-block' }} />
-          ФУТУРИЗМ
+          <span style={{ width: 7, height: 7, borderRadius: '50%', backgroundColor: '#6C76F0', display: 'inline-block' }} />
         </button>
 
-        {/* Desktop nav links */}
-        <div ref={navRef} className="hidden md:flex items-center gap-0 overflow-hidden" style={{ flex: 1, justifyContent: 'center', maxWidth: '800px', margin: '0 16px' }}>
+        {/* Desktop nav links — centered, no wrap */}
+        <div className="nav-links-wrap hidden md:flex">
           {sections.map(s => (
             <button
               key={s.id}
@@ -117,15 +117,15 @@ export function NavBar() {
           ))}
         </div>
 
-        {/* Right: theme icon */}
+        {/* Theme icon */}
         <div className="hidden md:flex items-center" style={{ flexShrink: 0 }}>
           <button className="theme-icon-btn" onClick={toggleTheme} title={isDark ? 'Светлая тема' : 'Тёмная тема'}>
             {isDark ? '☀️' : '🌙'}
           </button>
         </div>
 
-        {/* Mobile: theme + hamburger */}
-        <div className="md:hidden flex items-center gap-2">
+        {/* Mobile */}
+        <div className="md:hidden flex items-center gap-2" style={{ marginLeft: 'auto' }}>
           <button className="theme-icon-btn" onClick={toggleTheme} title={isDark ? 'Светлая тема' : 'Тёмная тема'}>
             {isDark ? '☀️' : '🌙'}
           </button>
