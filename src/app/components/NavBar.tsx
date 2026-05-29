@@ -94,17 +94,7 @@ export function NavBar() {
           gap: '8px',
         }}
       >
-        {/* Logo dot only */}
-        <button
-          onClick={scrollTop}
-          title="Наверх"
-          className="hover:opacity-70 transition-opacity"
-          style={{ background: 'none', border: 'none', cursor: 'pointer', flexShrink: 0, display: 'flex', alignItems: 'center', padding: '4px' }}
-        >
-          <span style={{ width: 7, height: 7, borderRadius: '50%', backgroundColor: '#6C76F0', display: 'inline-block' }} />
-        </button>
-
-        {/* Desktop nav links — centered, no wrap */}
+        {/* Desktop nav links – centered, no wrap */}
         <div className="nav-links-wrap hidden md:flex">
           {sections.map(s => (
             <button
