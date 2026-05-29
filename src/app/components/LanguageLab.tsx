@@ -208,7 +208,7 @@ export function LanguageLab() {
 
   return (
     <section id="language-lab" ref={sectionRef} className="py-24 md:py-32 px-6 relative overflow-hidden">
-      {/* Wave oscillogram — sound of zaum */}
+      {/* Wave oscillogram – sound of zaum */}
       <div className="absolute inset-0 pointer-events-none" style={{ opacity: 0.07 }}>
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
           <defs>
