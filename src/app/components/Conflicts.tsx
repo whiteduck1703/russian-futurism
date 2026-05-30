@@ -183,11 +183,6 @@ export function Conflicts() {
                   >
                     {conflict.authorRight}
                   </button>
-                  {vote && (
-                    <span className="text-[12px]" style={{ fontFamily: 'var(--font-body)', color: '#50B87A' }}>
-                      Ваш выбор сохранён
-                    </span>
-                  )}
                 </div>
 
                 {vote && (
