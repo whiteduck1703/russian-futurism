@@ -148,11 +148,7 @@ export function Quotes() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {quotes.map((quote, index) => (
-            <QuoteCard key={index} quote={quote} index={index} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
+          {quotes.map((quote, index) => {
+            const isLastOdd = index === quotes.length - 1 && quotes.length % 2 !== 0;
+            return (
+              <div key=
