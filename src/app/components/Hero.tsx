@@ -1,4 +1,3 @@
-import { ChevronDown } from 'lucide-react';
 import { motion } from 'motion/react';
 
 const scrollTo = (id: string) => {
@@ -96,15 +95,6 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 cursor-pointer"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        onClick={() => scrollTo('timeline')}
-      >
-        <ChevronDown size={32} style={{ color: '#6C76F0' }} />
-      </motion.div>
     </section>
   );
 }
