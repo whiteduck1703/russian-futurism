@@ -167,6 +167,7 @@ export function Timeline() {
                     }}
                     onClick={() => setExpandedEvent(expandedEvent === index ? null : index)}
                   >
+                    <div className="md:hidden text-[12px] font-bold mb-2 tracking-[0.1em]" style={{ fontFamily: 'var(--font-body)', color: event.color }}>{event.year}</div>
                     <h3 className="text-[19px] mb-2" style={{ fontFamily: 'var(--font-display)', fontWeight: 700 }}>
                       {event.title}
                     </h3>
