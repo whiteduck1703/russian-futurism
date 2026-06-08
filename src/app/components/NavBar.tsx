@@ -19,7 +19,6 @@ const sections = [
 export function NavBar() {
   const [active, setActive] = useState<string | null>(null);
   const [visible, setVisible] = useState(false);
-  const [expanded, setExpanded] = useState(false);
   const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
@@ -51,10 +50,16 @@ export function NavBar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  // Keep the active link visible inside the horizontally scrollable bar
+  useEffect(() => {
+    if (!active) return;
+    const el = document.getElementById('nav-' + active);
+    if (el) el.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+  }, [active]);
+
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    setExpanded(false);
   };
 
   const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -68,8 +73,8 @@ export function NavBar() {
         .nav-bar { animation: navSlideDown 0.3s cubic-bezier(0.22,1,0.36,1) both; }
         .nav-link {
           background: none; border: none; cursor: pointer;
-          font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase;
-          padding: 3px 6px; border-radius: 3px;
+          font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+          padding: 4px 8px; border-radius: 4px;
           transition: color 0.2s, background 0.2s;
           white-space: nowrap; flex-shrink: 0;
           color: var(--c-text-muted);
@@ -78,27 +83,41 @@ export function NavBar() {
         }
         .nav-link:hover { color: var(--c-text); background: rgba(108,118,240,0.1); }
         .nav-link.nav-active { color: #6C76F0; font-weight: 600; }
-        .nav-links-wrap { display: flex; align-items: center; flex: 1; justify-content: center; overflow: hidden; min-width: 0; }
+        /* Horizontally scrollable / swipeable links */
+        .nav-links-wrap {
+          display: flex; align-items: center; gap: 2px;
+          flex: 1; min-width: 0;
+          overflow-x: auto; overflow-y: hidden;
+          -webkit-overflow-scrolling: touch;
+          overscroll-behavior-x: contain;
+          scrollbar-width: none;
+          justify-content: flex-start;
+          scroll-padding: 0 16px;
+        }
+        .nav-links-wrap::-webkit-scrollbar { display: none; height: 0; }
+        @media (min-width: 1024px) {
+          /* On wide screens the links fit, so center them */
+          .nav-links-wrap { justify-content: center; }
+        }
         .theme-icon-btn { background:none; border:none; cursor:pointer; font-size:16px; line-height:1; padding:4px; opacity:0.8; transition:opacity 0.2s, transform 0.2s; display:flex; align-items:center; border-radius:4px; flex-shrink:0; }
         .theme-icon-btn:hover { opacity:1; transform:scale(1.2); }
-        .mobile-menu-btn { background:none; border:none; cursor:pointer; color:#6C76F0; font-size:18px; padding:4px; }
-        .mobile-dropdown button:hover { background: rgba(108,118,240,0.08) !important; }
       `}</style>
 
       <nav
-        className="nav-bar fixed top-0 left-0 right-0 z-50 flex items-center px-4 h-11"
+        className="nav-bar fixed top-0 left-0 right-0 z-50 flex items-center px-3 h-11"
         style={{
           backgroundColor: 'var(--c-nav-bg)',
           backdropFilter: 'blur(14px)',
           borderBottom: '1px solid var(--c-border)',
-          gap: '8px',
+          gap: '6px',
         }}
       >
-        {/* Desktop nav links – centered, no wrap */}
-        <div className="nav-links-wrap hidden md:flex">
+        {/* Scrollable / swipeable links – shown on all screen sizes */}
+        <div className="nav-links-wrap">
           {sections.map(s => (
             <button
               key={s.id}
+              id={'nav-' + s.id}
               onClick={() => scrollTo(s.id)}
               className={`nav-link${active === s.id ? ' nav-active' : ''}`}
             >
@@ -107,53 +126,13 @@ export function NavBar() {
           ))}
         </div>
 
-        {/* Theme icon */}
-        <div className="hidden md:flex items-center" style={{ flexShrink: 0 }}>
+        {/* Theme toggle – always visible */}
+        <div className="flex items-center" style={{ flexShrink: 0 }}>
           <button className="theme-icon-btn" onClick={toggleTheme} title={isDark ? 'Светлая тема' : 'Тёмная тема'}>
             {isDark ? '☀️' : '🌙'}
-          </button>
-        </div>
-
-        {/* Mobile */}
-        <div className="md:hidden flex items-center gap-2" style={{ marginLeft: 'auto' }}>
-          <button className="theme-icon-btn" onClick={toggleTheme} title={isDark ? 'Светлая тема' : 'Тёмная тема'}>
-            {isDark ? '☀️' : '🌙'}
-          </button>
-          <button className="mobile-menu-btn" onClick={() => setExpanded(e => !e)}>
-            {expanded ? '✕' : '☰'}
           </button>
         </div>
       </nav>
-
-      {/* Mobile dropdown */}
-      {expanded && (
-        <div
-          className="mobile-dropdown fixed top-11 left-0 right-0 z-40 md:hidden"
-          style={{ backgroundColor: 'var(--c-nav-dropdown)', borderBottom: '1px solid var(--c-border)', maxHeight: '70vh', overflowY: 'auto' }}
-        >
-          {sections.map(s => (
-            <button
-              key={s.id}
-              onClick={() => scrollTo(s.id)}
-              className="w-full text-left px-5 py-3"
-              style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '13px',
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-                color: active === s.id ? '#6C76F0' : 'var(--c-text-muted)',
-                backgroundColor: 'transparent',
-                border: 'none',
-                borderBottom: '1px solid var(--c-border)',
-                cursor: 'pointer',
-                display: 'block',
-              }}
-            >
-              {s.label}
-            </button>
-          ))}
-        </div>
-      )}
 
       {/* Back to top */}
       <button
