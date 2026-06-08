@@ -165,7 +165,6 @@ export function Graph() {
     <section id="graph" className="py-24 md:py-32 px-6">
       <style>{`
         @keyframes nodePulse { 0%,100%{transform:scale(1);opacity:0.5} 50%{transform:scale(1.15);opacity:0.8} }
-        @keyframes dashTravel { from { stroke-dashoffset: 0 } to { stroke-dashoffset: -86 } }
       `}</style>
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
@@ -226,42 +225,26 @@ export function Graph() {
                 <ellipse cx="45" cy="74" rx="16" ry="10" fill="#50B87A" opacity="0.05" />
               )}
 
-              {/* Edges: draw-in on mount + continuous travelling pulse */}
+              {/* Edges with draw-in animation */}
               {edges.map((edge, i) => {
                 const from = getNode(edge.from);
                 const to = getNode(edge.to);
                 if (!visibleIds.has(edge.from) || !visibleIds.has(edge.to)) return null;
                 const edgeColor = edge.color ?? '#242464';
-                const pulseColor = edge.color ?? '#6C76F0';
                 const len = edgeLength(from, to);
                 const delay = i * 0.12;
                 return (
-                  <g key={i}>
-                    {/* base line (draws itself in) */}
-                    <line
-                      x1={from.x} y1={from.y}
-                      x2={to.x} y2={to.y}
-                      stroke={edgeColor}
-                      strokeWidth={edge.type === 'dashed' ? '0.3' : '0.25'}
-                      strokeDasharray={edge.type === 'dashed' ? `1,1` : `${len} ${len}`}
-                      strokeDashoffset={edgesVisible ? 0 : len}
-                      opacity={0.5}
-                      style={{ transition: `stroke-dashoffset 0.6s ease ${delay}s` }}
-                    />
-                    {/* travelling pulse along the line */}
-                    {edgesVisible && (
-                      <line
-                        x1={from.x} y1={from.y}
-                        x2={to.x} y2={to.y}
-                        stroke={pulseColor}
-                        strokeWidth="0.5"
-                        strokeLinecap="round"
-                        strokeDasharray="2 84"
-                        opacity={0.9}
-                        style={{ animation: `dashTravel 2.4s linear ${delay}s infinite` }}
-                      />
-                    )}
-                  </g>
+                  <line
+                    key={i}
+                    x1={from.x} y1={from.y}
+                    x2={to.x} y2={to.y}
+                    stroke={edgeColor}
+                    strokeWidth={edge.type === 'dashed' ? '0.3' : '0.25'}
+                    strokeDasharray={edge.type === 'dashed' ? `1,1` : `${len} ${len}`}
+                    strokeDashoffset={edgesVisible ? 0 : len}
+                    opacity={0.7}
+                    style={{ transition: `stroke-dashoffset 0.6s ease ${delay}s` }}
+                  />
                 );
               })}
 
