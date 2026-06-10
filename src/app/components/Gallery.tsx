@@ -297,7 +297,7 @@ export function Gallery() {
           >
             {/* Image panel */}
             <div style={{
-              height: '380px',
+              minHeight: '320px',
               overflow: 'hidden',
               background: 'linear-gradient(135deg, ' + selectedPainting.color + '18, var(--c-surface-alt))',
             }}>
