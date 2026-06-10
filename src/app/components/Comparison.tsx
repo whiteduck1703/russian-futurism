@@ -40,7 +40,7 @@ export function Comparison() {
       label: 'ЛИРИЧЕСКИЙ ГЕРОЙ',
       values: [
         'Урбанистический бунтарь. Существо, которое страдает от несовместимости с миром и эту несовместимость делает оружием.',
-        'Рафинированный эстет. Я, гений Игорь И. Северянин. Певец электрических, коктейльных, ананасовых радостей. Или &#x2013; радикальное молчание В. Гнедова.',
+        'Рафинированный эстет. Я, гений Игорь Северянин. Певец электрических, коктейльных, ананасовых радостей. Или &#x2013; радикальное молчание В. Гнедова.',
         'Свидетель, а не пророк. Поэт &#x2013; медиум, через которого говорит жизнь. Слагаются стихи навзрыд &#x2013; процесс происходит сам.'
       ]
     },
@@ -152,11 +152,12 @@ export function Comparison() {
 className="px-1"
                 >
                   <div
-                    className="p-5 border-t h-full cursor-pointer transition-all duration-200"
+                    className="border-t h-full cursor-pointer transition-all duration-200"
                     style={{
                       backgroundColor: focusedRow === rowIndex ? 'var(--c-surface-alt)' : 'var(--c-surface)',
                       borderColor: 'var(--c-border)',
-                      borderLeft: focusedRow === rowIndex ? `3px solid ${column.topBorder}` : '3px solid transparent'
+                      borderLeft: focusedRow === rowIndex ? `3px solid ${column.topBorder}` : '3px solid transparent',
+                      padding: focusedRow === rowIndex ? '20px 20px 20px 28px' : '20px'
                     }}
                     onClick={() => setFocusedRow(focusedRow === rowIndex ? null : rowIndex)}
                     onMouseEnter={() => setHoveredColumn(colIndex)}
@@ -201,11 +202,12 @@ className="px-1"
                 {rows.map((row, rowIndex) => (
                   <div
                     key={rowIndex}
-                    className="p-6 border-t cursor-pointer transition-all duration-200"
+                    className="border-t cursor-pointer transition-all duration-200"
                     style={{
                       backgroundColor: focusedRow === rowIndex ? 'var(--c-surface-alt)' : 'var(--c-surface)',
                       borderColor: 'var(--c-border)',
-                      borderLeft: focusedRow === rowIndex ? `3px solid ${column.topBorder}` : '3px solid transparent'
+                      borderLeft: focusedRow === rowIndex ? `3px solid ${column.topBorder}` : '3px solid transparent',
+                      padding: focusedRow === rowIndex ? '24px 24px 24px 32px' : '24px'
                     }}
                     onClick={() => setFocusedRow(focusedRow === rowIndex ? null : rowIndex)}
                   >
