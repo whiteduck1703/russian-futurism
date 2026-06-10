@@ -1,5 +1,3 @@
-import { motion } from 'motion/react';
-
 const scrollTo = (id: string) => {
   const el = document.getElementById(id);
   if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -91,7 +89,7 @@ export function Hero() {
           <div style={{ color: 'var(--c-text-muted)' }}>&#xB7;</div>
           <div>12 манифестов</div>
           <div style={{ color: 'var(--c-text-muted)' }}>&#xB7;</div>
-          <div>15 лет эпохи</div>
+          <div>20 лет эпохи</div>
         </div>
       </div>
 
