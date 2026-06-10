@@ -157,7 +157,7 @@ className="px-1"
                       backgroundColor: focusedRow === rowIndex ? 'var(--c-surface-alt)' : 'var(--c-surface)',
                       borderColor: 'var(--c-border)',
                       borderLeft: focusedRow === rowIndex ? `3px solid ${column.topBorder}` : '3px solid transparent',
-                      padding: focusedRow === rowIndex ? '20px 20px 20px 28px' : '20px'
+                      padding: focusedRow === rowIndex ? '20px 20px 20px 48px' : '20px'
                     }}
                     onClick={() => setFocusedRow(focusedRow === rowIndex ? null : rowIndex)}
                     onMouseEnter={() => setHoveredColumn(colIndex)}
@@ -207,7 +207,7 @@ className="px-1"
                       backgroundColor: focusedRow === rowIndex ? 'var(--c-surface-alt)' : 'var(--c-surface)',
                       borderColor: 'var(--c-border)',
                       borderLeft: focusedRow === rowIndex ? `3px solid ${column.topBorder}` : '3px solid transparent',
-                      padding: focusedRow === rowIndex ? '24px 24px 24px 32px' : '24px'
+                      padding: focusedRow === rowIndex ? '24px 24px 24px 56px' : '24px'
                     }}
                     onClick={() => setFocusedRow(focusedRow === rowIndex ? null : rowIndex)}
                   >
