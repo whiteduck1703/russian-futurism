@@ -295,12 +295,16 @@ export function Gallery() {
             style={{ backgroundColor: 'var(--c-surface)', border: '2px solid ' + selectedPainting.color }}
             onClick={e => e.stopPropagation()}
           >
-            {/* Image panel — limited height on mobile */}
-            <div className="relative overflow-hidden" style={{ minHeight: '320px', background: 'linear-gradient(135deg, ' + selectedPainting.color + '18, var(--c-surface-alt))' }}>
+            {/* Image panel */}
+            <div style={{
+              height: '380px',
+              overflow: 'hidden',
+              background: 'linear-gradient(135deg, ' + selectedPainting.color + '18, var(--c-surface-alt))',
+            }}>
               <img
                 src={selectedPainting.img}
                 alt={selectedPainting.title}
-                className="absolute inset-0 w-full h-full object-contain"
+                style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
                 onError={e => { e.currentTarget.style.opacity = '0'; }}
               />
             </div>
