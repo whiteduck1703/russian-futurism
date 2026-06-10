@@ -89,7 +89,7 @@ export function PoemAnalysis() {
             Что это значит?
           </h2>
           <p className="text-[18px] mb-2" style={{ fontFamily: 'var(--font-body)', color: 'var(--c-text-muted)' }}>
-            Послойное чтение стихотворения А. Крученых
+            Послойное чтение стихотворения А. Кручёных
           </p>
         </div>
 
