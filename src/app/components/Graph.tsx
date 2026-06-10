@@ -2,18 +2,18 @@ import { useState, useEffect } from 'react';
 import { Network } from 'lucide-react';
 
 const nodes = [
-  { id: 'mayakovsky', name: 'Маяковский', x: 28, y: 28, color: '#E05555', group: 'Гилея' },
-  { id: 'khlebnikov', name: 'Хлебников', x: 50, y: 18, color: '#E05555', group: 'Гилея' },
-  { id: 'kruchenykh', name: 'Крученых', x: 38, y: 42, color: '#E05555', group: 'Гилея' },
-  { id: 'burliuk', name: 'Бурлюк', x: 18, y: 48, color: '#E05555', group: 'Гилея' },
-  { id: 'kamensky', name: 'Каменский', x: 20, y: 30, color: '#E05555', group: 'Гилея' },
-  { id: 'severyanin', name: 'Северянин', x: 72, y: 28, color: '#E8C84A', group: 'Эго-футуризм' },
-  { id: 'ignatiev', name: 'Игнатьев', x: 82, y: 40, color: '#E8C84A', group: 'Эго-футуризм' },
-  { id: 'gnedov', name: 'Гнедов', x: 78, y: 55, color: '#E8C84A', group: 'Эго-футуризм' },
-  { id: 'pasternak', name: 'Пастернак', x: 32, y: 72, color: '#50B87A', group: 'Центрифуга' },
-  { id: 'bobrov', name: 'Бобров', x: 46, y: 80, color: '#50B87A', group: 'Центрифуга' },
-  { id: 'aseev', name: 'Асеев', x: 56, y: 70, color: '#50B87A', group: 'Центрифуга' },
-  { id: 'livshits', name: 'Лившиц', x: 12, y: 62, color: '#E05555', group: 'Гилея' }
+  { id: 'mayakovsky', name: 'В. Маяковский', x: 28, y: 28, color: '#E05555', group: 'Гилея' },
+  { id: 'khlebnikov', name: 'В. Хлебников', x: 50, y: 18, color: '#E05555', group: 'Гилея' },
+  { id: 'kruchenykh', name: 'А. Кручёных', x: 38, y: 42, color: '#E05555', group: 'Гилея' },
+  { id: 'burliuk', name: 'Д. Бурлюк', x: 18, y: 48, color: '#E05555', group: 'Гилея' },
+  { id: 'kamensky', name: 'В. Каменский', x: 20, y: 30, color: '#E05555', group: 'Гилея' },
+  { id: 'severyanin', name: 'И. Северянин', x: 72, y: 28, color: '#E8C84A', group: 'Эго-футуризм' },
+  { id: 'ignatiev', name: 'И. Игнатьев', x: 82, y: 40, color: '#E8C84A', group: 'Эго-футуризм' },
+  { id: 'gnedov', name: 'В. Гнедов', x: 78, y: 55, color: '#E8C84A', group: 'Эго-футуризм' },
+  { id: 'pasternak', name: 'Б. Пастернак', x: 32, y: 72, color: '#50B87A', group: 'Центрифуга' },
+  { id: 'bobrov', name: 'С. Бобров', x: 46, y: 80, color: '#50B87A', group: 'Центрифуга' },
+  { id: 'aseev', name: 'Н. Асеев', x: 56, y: 70, color: '#50B87A', group: 'Центрифуга' },
+  { id: 'livshits', name: 'Б. Лившиц', x: 12, y: 62, color: '#E05555', group: 'Гилея' }
 ];
 
 const edges = [
@@ -57,7 +57,7 @@ const nodeInfo: Record<string, {
     works: ['«Заклятие смехом» (1908)', '«Бобэоби пелись губы» (1908–1909)', '«Ладомир» (1920)', '«Зангези» (1922)', '«Доски судьбы» (1922)']
   },
   kruchenykh: {
-    name: 'Алексей Крученых',
+    name: 'Алексей Кручёных',
     dates: '1886–1968',
     group: 'Гилея',
     color: '#E05555',
