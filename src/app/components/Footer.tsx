@@ -18,7 +18,7 @@ export function Footer() {
   return (
     <footer ref={ref} className="py-16 px-6" style={{ backgroundColor: 'var(--c-bg)', borderTop: '2px solid var(--c-border)' }}>
       <div className="max-w-7xl mx-auto">
-        <div className="mb-3 max-w-xl mx-auto text-center">
+        <div className="mb-3 max-w-3xl mx-auto text-center">
           <h4
             className="text-[16px] mb-4"
             style={{ fontFamily: 'var(--font-body)', fontWeight: 600, color: 'var(--c-text)' }}
@@ -29,7 +29,13 @@ export function Footer() {
             className="text-[14px] leading-[1.7]"
             style={{ fontFamily: 'var(--font-body)', color: 'var(--c-text-muted)' }}
           >
-            Некоммерческий образовательный ресурс о русском литературном авангарде 1910–1930-х годов. Сравнительный анализ трёх групп: «Гилея», «Эго-футуристы», «Центрифуга» – три разных ответа на один вопрос о судьбе слова.
+            Некоммерческий образовательный ресурс о русском литературном авангарде 1910–1930-х годов.
+          </p>
+          <p
+            className="text-[14px] leading-[1.7] mt-1"
+            style={{ fontFamily: 'var(--font-body)', color: 'var(--c-text-muted)' }}
+          >
+            Сравнительный анализ трёх групп: «Гилея», «Эго-футуристы», «Центрифуга» – три разных ответа на один вопрос о судьбе слова.
           </p>
         </div>
 
