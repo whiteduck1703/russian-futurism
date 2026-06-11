@@ -6,6 +6,7 @@ const sections = [
   { id: 'comparison',   label: 'Сравнение' },
   { id: 'poets',        label: 'Поэты' },
   { id: 'language-lab', label: 'Лаборатория' },
+  { id: 'poem-analysis', label: 'Слово' },
   { id: 'manifestos',   label: 'Манифесты' },
   { id: 'conflicts',    label: 'Полемика' },
   { id: 'graph',        label: 'Граф' },
