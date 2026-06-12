@@ -18,7 +18,6 @@ import { Texts } from './components/Texts';
 import { Gallery } from './components/Gallery';
 import { Analytics } from '@vercel/analytics/react';
 
-
 function SectionDivider() {
   return (
     <div className="flex items-center justify-center py-0" style={{ overflow: 'hidden' }}>
@@ -39,6 +38,7 @@ export default function App() {
       <NavBar />
       <Hero />
       <Timeline />
+      <PublicationsTimeline />
       <CityMap />
       <SectionDivider />
       <Comparison />
