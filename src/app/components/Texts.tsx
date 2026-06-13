@@ -455,7 +455,9 @@ export function Texts() {
                         style={{
                           backgroundColor: 'var(--c-surface)',
                           border: '2px solid #1E1E52',
+                          cursor: 'pointer',
                         }}
+                        onClick={() => window.open(edition.url, '_blank')}
                       >
                         {/* Cover */}
                         <div
@@ -535,6 +537,7 @@ export function Texts() {
                               className="flex items-center gap-1 transition-all hover:opacity-70"
                               style={{ color: group.color }}
                               title="Открыть источник"
+                              onClick={e => e.stopPropagation()}
                             >
                               <ExternalLink size={14} />
                             </a>
