@@ -147,7 +147,8 @@ export function PublicationsTimeline() {
                       <img
                         src={pub.cover}
                         alt=""
-                        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                        draggable={false}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', pointerEvents: 'none' }}
                       />
                     </div>
                   )}
