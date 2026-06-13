@@ -226,9 +226,10 @@ export function PublicationsTimeline() {
             zIndex: 1000,
             backgroundColor: 'rgba(0,0,0,0.88)',
             display: 'flex',
-            alignItems: 'center',
+            alignItems: 'flex-start',
             justifyContent: 'center',
-            padding: '24px',
+            padding: '40px 24px',
+            overflowY: 'auto',
           }}
         >
           <div
@@ -238,8 +239,9 @@ export function PublicationsTimeline() {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              maxWidth: '480px',
+              maxWidth: '520px',
               width: '100%',
+              margin: 'auto',
             }}
           >
             <button
@@ -260,6 +262,7 @@ export function PublicationsTimeline() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                zIndex: 1,
               }}
             >&#x00D7;</button>
 
@@ -268,22 +271,31 @@ export function PublicationsTimeline() {
               alt=""
               style={{
                 maxWidth: '100%',
-                maxHeight: 'calc(90vh - 80px)',
+                maxHeight: '72vh',
                 objectFit: 'contain',
                 borderRadius: '6px',
                 boxShadow: `0 24px 64px rgba(0,0,0,0.6), 0 0 0 1px ${coverModal.color}30`,
               }}
             />
 
-            <div style={{ marginTop: '20px', textAlign: 'center' }}>
+            <div
+              style={{
+                marginTop: '24px',
+                width: '100%',
+                backgroundColor: 'rgba(255,255,255,0.04)',
+                borderRadius: '10px',
+                padding: '20px 24px',
+                borderLeft: `4px solid ${coverModal.color}`,
+              }}
+            >
               <div
                 dangerouslySetInnerHTML={{ __html: coverModal.title }}
                 style={{
                   fontFamily: 'var(--font-display)',
-                  fontSize: '20px',
+                  fontSize: '22px',
                   fontWeight: 700,
                   color: '#fff',
-                  marginBottom: '6px',
+                  marginBottom: '8px',
                 }}
               />
               <div
@@ -291,6 +303,7 @@ export function PublicationsTimeline() {
                   fontFamily: 'var(--font-body)',
                   fontSize: '13px',
                   color: coverModal.color,
+                  marginBottom: '12px',
                 }}
               >
                 {coverModal.year}&nbsp;&#xB7;&nbsp;<span dangerouslySetInnerHTML={{ __html: coverModal.group }} />
@@ -299,10 +312,9 @@ export function PublicationsTimeline() {
                 dangerouslySetInnerHTML={{ __html: coverModal.note }}
                 style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: '13px',
-                  color: 'rgba(255,255,255,0.55)',
-                  marginTop: '8px',
-                  maxWidth: '360px',
+                  fontSize: '15px',
+                  lineHeight: '1.6',
+                  color: 'rgba(255,255,255,0.75)',
                 }}
               />
             </div>
