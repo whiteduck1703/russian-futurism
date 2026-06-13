@@ -117,6 +117,7 @@ export function PublicationsTimeline() {
               {publications.map((pub, i) => (
                 <div
                   key={i}
+                  onPointerDown={(e) => { if (e.pointerType === 'mouse' && e.button === 0) { e.preventDefault(); handleCardClick(pub, i); } }}
                   onClick={() => handleCardClick(pub, i)}
                   style={{
                     flexShrink: 0,
