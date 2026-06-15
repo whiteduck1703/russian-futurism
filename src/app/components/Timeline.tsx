@@ -79,6 +79,8 @@ export function Timeline() {
   const [visibleEvents, setVisibleEvents] = useState<Set<number>>(new Set());
   const eventRefs = useRef<(HTMLDivElement | null)[]>([]);
   const lastNudgeTime = useRef<number>(0);
+  const sectionRef = useRef<HTMLElement>(null);
+  const hasAutoPlayedRef = useRef(false);
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
@@ -123,8 +125,38 @@ export function Timeline() {
     return () => observers.forEach(obs => obs.disconnect());
   }, []);
 
+  // Каскадное появление всех событий при входе секции в viewport
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !hasAutoPlayedRef.current) {
+            hasAutoPlayedRef.current = true;
+            events.forEach((_, index) => {
+              setTimeout(() => {
+                setVisibleEvents(prev => {
+                  if (prev.has(index)) return prev;
+                  const next = new Set(prev);
+                  next.add(index);
+                  return next;
+                });
+              }, index * 180);
+            });
+          } else if (!entry.isIntersecting) {
+            hasAutoPlayedRef.current = false;
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -60px 0px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="timeline" className="py-24 md:py-32 px-6 relative overflow-hidden">
+    <section id="timeline" ref={sectionRef} className="py-24 md:py-32 px-6 relative overflow-hidden">
       <div className="max-w-5xl mx-auto">
         <div className="mb-20 text-center">
           <div className="text-[11px] tracking-[0.2em] uppercase mb-4" style={{ fontFamily: 'var(--font-body)', color: '#6C76F0' }}>
