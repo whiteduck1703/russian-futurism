@@ -133,6 +133,7 @@ export function Comparison() {
                   borderColor: 'var(--c-border)',
                   paddingTop: '22px',
                   paddingBottom: '22px',
+                  paddingLeft: '24px',
                   backgroundColor: focusedRow === rowIndex ? 'var(--c-surface-alt)' : 'transparent',
                 }}
                 onClick={() => setFocusedRow(focusedRow === rowIndex ? null : rowIndex)}
