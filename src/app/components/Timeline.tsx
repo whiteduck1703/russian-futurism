@@ -78,9 +78,6 @@ export function Timeline() {
   const [expandedEvent, setExpandedEvent] = useState<number | null>(null);
   const [visibleEvents, setVisibleEvents] = useState<Set<number>>(new Set());
   const eventRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const lastNudgeTime = useRef<number>(0);
-  const sectionRef = useRef<HTMLElement>(null);
-  const hasAutoPlayedRef = useRef(false);
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
@@ -91,32 +88,32 @@ export function Timeline() {
         (entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
+              // Показываем текущее событие
               setVisibleEvents(prev => {
                 if (prev.has(index)) return prev;
                 const next = new Set(prev);
                 next.add(index);
                 return next;
               });
-              // Nudge to partially reveal next block
-              if (index < events.length - 1) {
-                setTimeout(() => {
-                  const now = Date.now();
-                  if (now - lastNudgeTime.current < 800) return;
-                  const nextRef = eventRefs.current[index + 1];
-                  if (nextRef) {
-                    const rect = nextRef.getBoundingClientRect();
-                    if (rect.top > window.innerHeight * 0.72) {
-                      lastNudgeTime.current = now;
-                      window.scrollBy({ top: 160, behavior: 'smooth' });
-                    }
-                  }
-                }, 1500);
+              // При первом событии — каскадируем все остальные
+              if (index === 0) {
+                events.forEach((_, i) => {
+                  if (i === 0) return;
+                  setTimeout(() => {
+                    setVisibleEvents(prev => {
+                      if (prev.has(i)) return prev;
+                      const next = new Set(prev);
+                      next.add(i);
+                      return next;
+                    });
+                  }, i * 180);
+                });
               }
               observer.disconnect();
             }
           });
         },
-        { threshold: 0.45 }
+        { threshold: 0.3 }
       );
       observer.observe(ref);
       observers.push(observer);
@@ -125,38 +122,8 @@ export function Timeline() {
     return () => observers.forEach(obs => obs.disconnect());
   }, []);
 
-  // Каскадное появление всех событий при входе секции в viewport
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && !hasAutoPlayedRef.current) {
-            hasAutoPlayedRef.current = true;
-            events.forEach((_, index) => {
-              setTimeout(() => {
-                setVisibleEvents(prev => {
-                  if (prev.has(index)) return prev;
-                  const next = new Set(prev);
-                  next.add(index);
-                  return next;
-                });
-              }, index * 180);
-            });
-          } else if (!entry.isIntersecting) {
-            hasAutoPlayedRef.current = false;
-          }
-        });
-      },
-      { threshold: 0.08, rootMargin: '0px 0px -60px 0px' }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section id="timeline" ref={sectionRef} className="py-24 md:py-32 px-6 relative overflow-hidden">
+    <section id="timeline" className="py-24 md:py-32 px-6 relative overflow-hidden">
       <div className="max-w-5xl mx-auto">
         <div className="mb-20 text-center">
           <div className="text-[11px] tracking-[0.2em] uppercase mb-4" style={{ fontFamily: 'var(--font-body)', color: '#6C76F0' }}>
