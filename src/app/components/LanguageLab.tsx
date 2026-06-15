@@ -156,8 +156,8 @@ function MayakovskyPoem() {
 export function LanguageLab() {
   const [activeTab, setActiveTab] = useState(0);
   const [animKey, setAnimKey] = useState(0);
-  const [sectionVisible, setSectionVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const hasTriggeredRef = useRef(false);
 
   // Trigger animation when section enters viewport
   useEffect(() => {
@@ -166,17 +166,19 @@ export function LanguageLab() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting && !sectionVisible) {
-            setSectionVisible(true);
+          if (entry.isIntersecting && !hasTriggeredRef.current) {
+            hasTriggeredRef.current = true;
             setAnimKey(k => k + 1);
+          } else if (!entry.isIntersecting) {
+            hasTriggeredRef.current = false;
           }
         });
       },
-      { threshold: 0.25 }
+      { threshold: 0.2, rootMargin: '0px 0px -100px 0px' }
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, [sectionVisible]);
+  }, []);
 
   const tabs = [
     {
