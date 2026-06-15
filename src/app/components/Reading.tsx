@@ -381,7 +381,7 @@ export function Reading() {
                       <div className="mt-2 p-4 rounded-lg"
                         style={{ backgroundColor: 'var(--c-bg)', border: '1px solid ' + book.color + '40' }}>
                         <p className="text-[13px] leading-[1.7] mb-3"
-                          style={{ fontFamily: 'var(--font-body)', color: 'var(--c-text-muted)' }}
+                          style={{ fontFamily: 'var(--font-body)', color: 'var(--c-text)' }}
                           dangerouslySetInnerHTML={{ __html: book.note }}
                         />
                         <div className="pt-3" style={{ borderTop: '2px solid #1E1E52' }}>
