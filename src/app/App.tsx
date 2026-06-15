@@ -12,7 +12,6 @@ import { Quotes } from './components/Quotes';
 import { Footer } from './components/Footer';
 import { NavBar } from './components/NavBar';
 import { CityMap } from './components/CityMap';
-import { PublicationsTimeline } from './components/PublicationsTimeline';
 import { PoemAnalysis } from './components/PoemAnalysis';
 import { Texts } from './components/Texts';
 import { Gallery } from './components/Gallery';
@@ -38,7 +37,6 @@ export default function App() {
       <NavBar />
       <Hero />
       <Timeline />
-      <PublicationsTimeline />
       <CityMap />
       <SectionDivider />
       <Comparison />
