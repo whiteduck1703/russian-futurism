@@ -204,7 +204,7 @@ export function Gallery() {
           {/* Filters */}
           <div className="flex flex-wrap gap-3 justify-center">
             {filters.map(f => (
-              <button key={f} onClick={() => setActiveFilter(f)}
+              <button key={f} onClick={() => { setActiveFilter(f); setSelected(null); }}
                 className="px-5 py-2 rounded-full transition-all text-[13px]"
                 style={{
                   fontFamily: 'var(--font-body)', fontWeight: 600,
