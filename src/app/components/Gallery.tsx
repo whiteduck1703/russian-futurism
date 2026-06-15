@@ -62,7 +62,7 @@ const paintings = [
     description: 'Удальцова применяет французский кубизм к русскому материалу – множественный ракурс, деконструкция пространства. Участница выставок Бубновый валет и 0,10. Деструкция формы в живописи и поэзии шли в ногу.',
   },
   {
-    title: 'Велосипедистка',
+    title: 'Велосипедистка (Розанова)',
     artist: 'Ольга Розанова',
     year: '1915',
     movement: 'Кубофутуризм',
@@ -223,7 +223,7 @@ export function Gallery() {
           {filtered.map((p, i) => {
             const globalIdx = paintings.indexOf(p);
             return (
-              <div key={p.title}
+              <div key={globalIdx}
                 className="group relative overflow-hidden rounded-lg cursor-pointer transition-all duration-300 hover:scale-[1.02]"
                 style={{
                   backgroundColor: 'var(--c-bg)',
