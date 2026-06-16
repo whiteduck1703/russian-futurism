@@ -55,7 +55,7 @@ function KhlebnikovPoem({ animKey }: { animKey: number }) {
     return () => clearTimeout(t);
   }, [animKey]);
 
-  const rootColor = '#50B87A';
+  const rootColor = '#E05555';
 
   const renderLine = (line: string) => {
     const rootPattern = /смех|смей|смеян|смеяльн|усмеяльн|смеянств|смеятьс|смеялс|смеял|смеяльно|смеются|смехами/gi;
@@ -206,7 +206,7 @@ export function LanguageLab() {
     setAnimKey(k => k + 1);
   };
 
-  const tabColors = ['#E05555', '#50B87A', '#E05555'];
+  const tabColors = ['#E05555', '#E05555', '#E05555'];
 
   return (
     <section id="language-lab" ref={sectionRef} className="py-24 md:py-32 px-6 relative overflow-hidden">
@@ -219,7 +219,7 @@ export function LanguageLab() {
               @keyframes wave2 { 0%,100%{d:path("M0,70 C200,40 400,100 600,70 C800,40 1000,100 1200,70 C1300,55 1380,60 1440,70 L1440,72 C1380,62 1300,57 1200,72 C1000,102 800,42 600,72 C400,102 200,42 0,72 Z")} 50%{d:path("M0,70 C200,100 400,40 600,70 C800,100 1000,40 1200,70 C1300,85 1380,80 1440,70 L1440,72 C1380,82 1300,87 1200,72 C1000,42 800,102 600,72 C400,42 200,102 0,72 Z")} }
             `}</style>
           </defs>
-          <path fill="#50B87A" style={{ animation: 'wave1 8s ease-in-out infinite' }} d="M0,50 C150,20 300,80 450,50 C600,20 750,80 900,50 C1050,20 1200,80 1440,50 L1440,52 C1200,82 1050,22 900,52 C750,82 600,22 450,52 C300,82 150,22 0,52 Z"/>
+          <path fill="#E05555" style={{ animation: 'wave1 8s ease-in-out infinite' }} d="M0,50 C150,20 300,80 450,50 C600,20 750,80 900,50 C1050,20 1200,80 1440,50 L1440,52 C1200,82 1050,22 900,52 C750,82 600,22 450,52 C300,82 150,22 0,52 Z"/>
           <path fill="#E05555" style={{ animation: 'wave2 12s ease-in-out infinite' }} d="M0,70 C200,40 400,100 600,70 C800,40 1000,100 1200,70 C1300,55 1380,60 1440,70 L1440,72 C1380,62 1300,57 1200,72 C1000,102 800,42 600,72 C400,102 200,42 0,72 Z"/>
         </svg>
       </div>
