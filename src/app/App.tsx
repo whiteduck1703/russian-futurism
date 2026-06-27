@@ -12,10 +12,12 @@ import { Quotes } from './components/Quotes';
 import { Footer } from './components/Footer';
 import { NavBar } from './components/NavBar';
 import { CityMap } from './components/CityMap';
+import { PublicationsTimeline } from './components/PublicationsTimeline';
 import { PoemAnalysis } from './components/PoemAnalysis';
 import { Texts } from './components/Texts';
 import { Gallery } from './components/Gallery';
 import { Analytics } from '@vercel/analytics/react';
+import { LangProvider } from './LangContext';
 
 function SectionDivider() {
   return (
@@ -33,32 +35,34 @@ function SectionDivider() {
 
 export default function App() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: 'var(--c-bg)', color: 'var(--c-text)' }}>
-      <NavBar />
-      <Hero />
-      <Timeline />
-      <CityMap />
-      <SectionDivider />
-      <Comparison />
-      <SectionDivider />
-      <Poets />
-      <LanguageLab />
-      <PoemAnalysis />
-      <Manifestos />
-      <SectionDivider />
-      <Conflicts />
-      <SectionDivider />
-      <Graph />
-      <SectionDivider />
-      <Glossary />
-      <Quiz />
-      <Quotes />
-      <SectionDivider />
-      <Gallery />
-      <SectionDivider />
-      <Texts />
-      <Footer />
-      <Analytics />
-    </div>
+    <LangProvider>
+      <div className="min-h-screen" style={{ backgroundColor: 'var(--c-bg)', color: 'var(--c-text)' }}>
+        <NavBar />
+        <Hero />
+        <Timeline />
+        <CityMap />
+        <SectionDivider />
+        <Comparison />
+        <SectionDivider />
+        <Poets />
+        <LanguageLab />
+        <PoemAnalysis />
+        <Manifestos />
+        <SectionDivider />
+        <Conflicts />
+        <SectionDivider />
+        <Graph />
+        <SectionDivider />
+        <Glossary />
+        <Quiz />
+        <Quotes />
+        <SectionDivider />
+        <Gallery />
+        <SectionDivider />
+        <Texts />
+        <Footer />
+        <Analytics />
+      </div>
+    </LangProvider>
   );
 }
